@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Paths } from "../utils";
 
-export default function RegisterForm() {
+export default function RegisterForm({ handleSubmit }) {
   const [input, setInput] = useState({ username: "", password: "" });
   const navigate = useNavigate();
 
@@ -14,7 +14,7 @@ export default function RegisterForm() {
   function handleSubmitDecor(e) {
     e.preventDefault();
     handleSubmit(input);
-    navigate(Paths.movie);
+    // navigate(Paths.movie);
   }
 
   return (

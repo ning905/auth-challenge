@@ -12,7 +12,15 @@ function App() {
   const [user, setUser] = useState({ username: "", password: "" });
 
   function handleRegister(user) {
-    console.log(user);
+    fetch(`${apiUrl}/user/register`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(user),
+    })
+      .then((res) => res.json())
+      .then((res) => localStorage.setItem("token", res.data));
   }
 
   function handleLogin(e) {

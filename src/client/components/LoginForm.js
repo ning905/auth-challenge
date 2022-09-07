@@ -41,7 +41,7 @@ export default function LoginForm({ handleSubmit }) {
             value={input.password}
           />
         </div>
-        <button type="submit">Register</button>
+        <button type="submit">Login</button>
       </form>
       <p>
         Haven't registered yet? Go to <Link to={Paths.register}>register</Link>
