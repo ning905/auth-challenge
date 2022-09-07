@@ -1,27 +1,25 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Paths } from "../utils";
 
 export default function RegisterForm({ handleSubmit }) {
   const [input, setInput] = useState({ username: "", password: "" });
-  const navigate = useNavigate();
 
   function handleChange(e) {
     const { name, value } = e.target;
     setInput({ ...input, [name]: value });
   }
 
-  function handleSubmitDecor(e) {
+  async function handleSubmitDecor(e) {
     e.preventDefault();
     handleSubmit(input);
-    navigate(Paths.movie);
   }
 
   return (
     <div>
       <form onSubmit={handleSubmitDecor}>
         <div>
-          <label>Username: </label>
+          <label htmlFor="username">Username: </label>
           <input
             type="text"
             id="username"
@@ -31,7 +29,7 @@ export default function RegisterForm({ handleSubmit }) {
           />
         </div>
         <div>
-          <label>Password: </label>
+          <label htmlFor="password">Password: </label>
           <input
             type="password"
             id="password"

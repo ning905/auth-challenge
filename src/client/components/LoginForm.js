@@ -1,10 +1,9 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Paths } from "../utils";
 
 export default function LoginForm({ handleSubmit }) {
   const [input, setInput] = useState({ username: "", password: "" });
-  const navigate = useNavigate();
 
   function handleChange(e) {
     const { name, value } = e.target;
@@ -14,7 +13,6 @@ export default function LoginForm({ handleSubmit }) {
   function handleSubmitDecor(e) {
     e.preventDefault();
     handleSubmit(input);
-    navigate(Paths.movie);
   }
 
   return (

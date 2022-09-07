@@ -5,17 +5,22 @@ const jwt = require("jsonwebtoken");
 
 async function register(req, res) {
   const { username, password } = req.body;
+  console.log(req.body);
   const hashedPassword = await bcrypt.hash(password, 10);
 
-  await prisma.user.create({
+  const user = await prisma.user.create({
     data: {
       username,
       password: hashedPassword,
     },
   });
+  console.log(user);
 
   const token = jwt.sign({ username }, process.env.JWT_SECRET_KEY);
-  res.status(200).json({ data: token });
+  res.status(200).json({
+    msg: "User created successfully",
+    data: token,
+  });
 }
 
 async function login(req, res) {
@@ -35,7 +40,11 @@ async function login(req, res) {
 
   const token = jwt.sign({ username }, process.env.JWT_SECRET_KEY);
 
-  res.status(200).json({ data: token });
+  res.status(200).json({
+    msg: "User login successfully",
+
+    data: token,
+  });
 }
 
 module.exports = {
