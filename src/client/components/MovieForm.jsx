@@ -10,7 +10,7 @@ export default function MovieForm({ handleSubmit }) {
   const handleSubmitDecorator = (e) => {
     e.preventDefault();
     handleSubmit(movie);
-    // setMovie({ title: "", description: "", runtimeMins: 60 });
+    setMovie({ title: "", description: "", runtimeMins: 60 });
   };
 
   const handleChange = (e) => {

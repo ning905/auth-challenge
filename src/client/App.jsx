@@ -9,20 +9,10 @@ function App() {
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
-    fetch(
-      `${apiUrl}/movie`
-      // , {
-      //   method: "GET",
-      //   headers: {
-      //     Authorization:
-      //       "Bearer " + JSON.stringify(localStorage.getItem("token")),
-      //   },
-      // }
-    )
+    fetch(`${apiUrl}/movie`)
       .then((res) => res.json())
       .then((res) => setMovies(res.data));
   }, []);
-  console.log("Movie: ", movies);
 
   const handleRegister = async ({ username, password }) => {
     fetch(`${apiUrl}/user/register`, {
@@ -31,9 +21,7 @@ function App() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ username, password }),
-    })
-      .then((res) => res.json())
-      .then((data) => console.log(data));
+    });
   };
 
   const handleLogin = async ({ username, password }) => {
@@ -45,9 +33,8 @@ function App() {
       body: JSON.stringify({ username, password }),
     })
       .then((res) => res.json())
-      .then((data) => {
-        localStorage.setItem("token", data.data);
-        console.log(localStorage.token);
+      .then((res) => {
+        localStorage.setItem("token", res.data);
       });
   };
 
@@ -56,13 +43,12 @@ function App() {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization:
-          "Bearer " + JSON.stringify(localStorage.getItem("token")),
+        Authorization: "Bearer " + localStorage.getItem("token"),
       },
       body: JSON.stringify({ title, description, runtimeMins }),
     })
       .then((res) => res.json())
-      .then((data) => console.log(data));
+      .then((res) => setMovies([...movies, res.data]));
   };
 
   return (
