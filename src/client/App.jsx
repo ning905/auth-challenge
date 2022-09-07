@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import LoginForm from "./components/LoginForm";
@@ -8,11 +9,27 @@ import { Paths } from "./utils";
 const apiUrl = "http://localhost:4000";
 
 function App() {
+  const [user, setUser] = useState({ username: "", password: "" });
+
+  function handleRegister(user) {
+    console.log(user);
+  }
+
+  function handleLogin(e) {
+    console.log(e);
+  }
+
   return (
     <div className="App">
       <Routes>
-        <Route path={Paths.home} element={<LoginForm />} />
-        <Route path={Paths.register} element={<RegisterForm />} />
+        <Route
+          path={Paths.home}
+          element={<LoginForm handleSubmit={handleLogin} />}
+        />
+        <Route
+          path={Paths.register}
+          element={<RegisterForm handleSubmit={handleRegister} />}
+        />
         <Route path={Paths.movie} element={<MovieForm />} />
       </Routes>
     </div>
