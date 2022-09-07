@@ -14,7 +14,7 @@ export default function RegisterForm({ handleSubmit }) {
   function handleSubmitDecor(e) {
     e.preventDefault();
     handleSubmit(input);
-    // navigate(Paths.movie);
+    navigate(Paths.movie);
   }
 
   return (

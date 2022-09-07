@@ -9,7 +9,7 @@ import { Paths } from "./utils";
 const apiUrl = "http://localhost:4000";
 
 function App() {
-  const [user, setUser] = useState({ username: "", password: "" });
+  // const [user, setUser] = useState({ username: "", password: "" });
 
   function handleRegister(user) {
     fetch(`${apiUrl}/user/register`, {
@@ -23,8 +23,16 @@ function App() {
       .then((res) => localStorage.setItem("token", res.data));
   }
 
-  function handleLogin(e) {
-    console.log(e);
+  function handleLogin(user) {
+    fetch(`${apiUrl}/user/login`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(user),
+    })
+      .then((res) => res.json())
+      .then((res) => localStorage.setItem("token", res.data));
   }
 
   return (

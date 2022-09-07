@@ -17,7 +17,6 @@ export default function LoginForm({ handleSubmit }) {
     navigate(Paths.movie);
   }
 
-  console.log(input);
   return (
     <div>
       <form onSubmit={handleSubmitDecor}>
